@@ -61,7 +61,7 @@ const getPublicProducts = async (req, res) => {
         // The result gives an array of inventory records. Let's simplify it.
         const formattedData = data.map(product => {
             // Sum up the stock from all inventory records (in case a product is in multiple warehouses)
-            const total_stock = product.inventory.reduce((sum, inv) => sum + inv.quantity, 0);
+            const total_stock = (product.inventory || []).reduce((sum, inv) => sum + inv.quantity, 0);
             return {
                 id: product.id,
                 name_en: product.name_en,
@@ -111,7 +111,7 @@ const getProductById = async (req, res) => {
         }
         
         // Just like in your other functions, let's calculate the total stock
-        const total_stock = product.inventory.reduce((sum, inv) => sum + inv.quantity, 0);
+        const total_stock = (product.inventory || []).reduce((sum, inv) => sum + inv.quantity, 0);
         delete product.inventory; // Clean up the response object
         product.stock_level = total_stock;
 
