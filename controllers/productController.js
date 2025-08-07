@@ -20,7 +20,7 @@ const getAllProductsWithInventory = async (req, res) => {
                 inventory ( quantity )
             `)
             .eq('is_active', true);
-            .range(0, 1999);
+            .limit(2000);
 
         if (error) throw error;
 
@@ -53,7 +53,7 @@ const getPublicProducts = async (req, res) => {
                 inventory ( quantity )
             `)
             .eq('is_active', true)
-            .range(0, 1999); // Only show active products
+            .limit(2000); // Only show active products
             // You might add another .eq() to filter by a specific retail warehouse ID later
 
         if (error) throw error;
