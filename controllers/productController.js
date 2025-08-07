@@ -17,7 +17,7 @@ const getAllProductsWithInventory = async (req, res) => {
                 image_url,
                 selling_price,
                 is_active,
-                inventory ( quantity )
+                inventory:inventory!left ( quantity )
             `)
             .eq('is_active', true)
             .limit(2000);
@@ -50,7 +50,7 @@ const getPublicProducts = async (req, res) => {
                 category,
                 image_url,
                 selling_price,
-                inventory ( quantity )
+                inventory:inventory!left ( quantity )
             `)
             .eq('is_active', true)
             .limit(2000); // Only show active products
@@ -94,7 +94,7 @@ const getProductById = async (req, res) => {
                 category,
                 image_url,
                 selling_price,
-                inventory ( quantity )
+                inventory:inventory!left ( quantity )
             `)
             .eq('id', id)
             .eq('is_active', true) // Ensure we don't show inactive products
