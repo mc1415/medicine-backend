@@ -19,7 +19,7 @@ const getAllProductsWithInventory = async (req, res) => {
                 is_active,
                 inventory ( quantity )
             `)
-            .eq('is_active', true);
+            .eq('is_active', true)
             .limit(2000);
 
         if (error) throw error;
